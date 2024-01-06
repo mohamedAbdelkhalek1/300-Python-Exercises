@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Countdown Timer</title>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    
+    h1 {
+      margin-top: 50px;
+    }
+    
+    #timer-container {
+      margin-top: 50px;
+    }
+    
+    input {
+      margin-bottom: 10px;
+    }
+    
+    button {
+      margin-top: 10px;
+    }
+    
+    #countdown {
+      font-size: 30px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <title>Countdown Timer</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>Countdown Timer</h1>
+  <div id="timer-container">
+    <label for="start-position">Start Position:</label>
+    <input type="text" id="start-position" placeholder="Enter start position">
+
+    <label for="end-position">End Position:</label>
+    <input type="text" id="end-position" placeholder="Enter end position">
+
+    <button onclick="startCountdown()">Start Countdown</button>
+
+    <div id="countdown"></div>
+  </div>
+
+  <script>
+    function startCountdown() {
+      var startPosition = parseInt(document.getElementById('start-position').value);
+      var endPosition = parseInt(document.getElementById('end-position').value);
+    
+      if (isNaN(startPosition) || isNaN(endPosition)) {
+        alert("Please enter valid start and end positions.");
+        return;
+      }
+    
+      var countdownElement = document.getElementById('countdown');
+      countdownElement.innerHTML = '';
+    
+      var countdownInterval = setInterval(function() {
+        if (startPosition >= endPosition) {
+          clearInterval(countdownInterval);
+          countdownElement.innerHTML = 'Countdown Finished!';
+        } else {
+          countdownElement.innerHTML = startPosition;
+          startPosition++;
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
